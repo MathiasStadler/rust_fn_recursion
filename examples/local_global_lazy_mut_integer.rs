@@ -1,12 +1,29 @@
 use once_cell::sync::Lazy;
-use chrono::Utc;
+// use std::sync::Mutex;
+
 use log::debug;
 
-static GLOBAL_DATA: Lazy<String> = Lazy::new(||Utc::now().to_string());
+// works
+// const GLOBAL_DATA: Lazy<Mutex<u8>> = Lazy::new(|| Mutex::new(0));
+
+static  mut GLOBAL_DATA: Lazy<u8> = Lazy::new(|| 0);
+
 
 fn main() {
 
     env_logger::init();
     
-    debug!("{}", *GLOBAL_DATA);
+    // println!("{:#?}", *GLOBAL_DATA);
+    debug!("{:#?}", *GLOBAL_DATA);
+    second();
+}
+
+
+fn second(){
+    debug!("{:#?}", *GLOBAL_DATA);
+
+
+    *GLOBAL_DATA = 5;
+
+    debug!("{:#?}", *GLOBAL_DATA);
 }
