@@ -7,6 +7,9 @@ use std::io::Write;
 
 use stdext::function_name;
 
+
+
+
 fn main() {
 
 
@@ -31,31 +34,28 @@ fn main() {
         .init();
 
 
-    println!("Hello, second recursion!");
+    //println!("Hello, second recursion!");
 
     info!("Hello, second recursion!");
-    let _ = run(2);
+    let _ = run(2,10);
 }
 
 
-async fn run (i: u32) -> u32{
 
-    
-    let fn_name = function_name!()
-              .rsplit_once(':')
-              .expect("could not parse function name")
-              .1;
 
-              println!("{}", fn_name);
-    
-    debug!("start => async_fibonacci");
-    async_fibonacci(i).await
-}
+fn run (_i: u32,max_n:u32) -> u32{
 
-async fn async_fibonacci(i: u32) -> u32 {
-    if i == 0 || i == 1 {
-        i
-    } else {
-        Box::pin(async_fibonacci(i - 1)).await + Box::pin(async_fibonacci(i - 2)).await
+
+    debug!("run is running {} ",_i);
+    debug!("fn name => {}",function_name!());
+
+    if _i < max_n {
+
+        run(_i,0);
     }
+
+    1
+    
 }
+
+
