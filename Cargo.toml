@@ -1,0 +1,10 @@
+[package]
+name = "rust_fn_recursion"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+env_logger = "0.11.3"
+futures = "0.3.30"
+log = "0.4.21"
+stdext = "0.3.3"
